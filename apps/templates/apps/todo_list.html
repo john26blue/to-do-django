@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block todo %}
+    {% if todo_list %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in todo_list %}
+	            <tr {% if item.marked %}class="alert-warning"{% endif %}>
+                    <td>{{ item.content }}</td>
+                    <td>{{ item.added_date }}</td>
+                    <td>{{ item.get_status_display }}</td>
+                    <td>
+                        <div class="btn-group btn-group-xs" role="group">
+                            {% if item.status != 'c' %}
+                            <a href="{% url 'finish' item.pk %}" class="btn btn-success">Finish</a>
+                            {% endif %}
+                            <a href="{% url 'change' item.pk %}" class="btn btn-default">Change</a>
+                            <a href="{% url 'delete' item.pk %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning alert-dismissable">
+            There's no to-do! Add now.
+        </div>
+    {% endif %}
+{% endblock %}

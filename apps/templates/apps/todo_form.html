@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block todo %}
+    {% if form %}
+    <form role="form" method="post" class="form-horizontal">
+        {% crispy form %}
+    </form>
+    {% else %}
+        <div class="alert alert-warning alert-dismissable">
+            There's no to-do! Add now.
+        </div>
+    {% endif %}
+{% endblock %}
