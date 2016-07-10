@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 {% for item in todo_list %}
-	            <tr {% if item.marked %}class="alert-warning"{% endif %}>
+	            <tr class="{% if item.marked %}alert-warning {% endif %}{% if item.status == 'c'%}finished {% endif %}">
                     <td>{{ item.content }}</td>
                     <td>{{ item.added_date }}</td>
                     <td>{{ item.get_status_display }}</td>
@@ -35,4 +35,7 @@
             There's no to-do! Add now.
         </div>
     {% endif %}
+    <button type="button" class="btn btn-primary" id="showFinished" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Show finished
+    </button>
 {% endblock %}

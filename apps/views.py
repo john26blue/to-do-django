@@ -12,9 +12,7 @@ class MainPage(LoginRequiredMixin, ListView):
         if self.request.method == 'GET':
             string = self.request.GET.get('q','')
             if string is not None:
-                return Todo.objects.filter(user__pk=self.request.user.pk, content__icontains=string)
-            else:
-                return Todo.objects.filter(user__pk=self.request.user.pk)
+                return Todo.objects.filter(user__pk=self.request.user.pk, content__icontains=string).order_by('status')
 
 class Create(LoginRequiredMixin, CreateView):
     model = Todo
@@ -33,14 +31,6 @@ class Change(LoginRequiredMixin, UpdateView):
 class Delete(LoginRequiredMixin, DeleteView):
     model = Todo
     success_url = '/'
-
-class Search(LoginRequiredMixin, ListView):
-    model = Todo
-    template_name = 'Apps/todo_list.html'
-    def get_queryset(self):
-        if self.request.method == 'GET':
-            string = self.request.GET['q']
-            return Todo.objects.filter(content__icontains=string)
 
 def Finish(request, pk):
     try:
