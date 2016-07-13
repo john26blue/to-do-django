@@ -11,9 +11,6 @@
 		        </div>
 		        <!-- Collect the nav links, forms, and other content for toggling -->
 		        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			        <ul class="nav navbar-nav">
-                        <li class="active"><a href="{% url 'create' %}">Create</a></liclass="active">			        
-			        </ul>
 			        <form class="navbar-form navbar-left" role="search" method="get" action="/">
 				        <div class="form-group">
 					        <input type="text" class="form-control" placeholder="Search" name="q">
@@ -31,6 +28,9 @@
         </nav>
     </div>
 </div>
+
+{% block toolbar %}
+{% endblock %}
 
 <div class="row">
     <div class="col-md-12">

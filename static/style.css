@@ -1,2 +1,6 @@
+/* toolbar */
+.controlBar {margin: 0 0 20px}
+#uncheckBtn {display: none}
+
 /* todo items */
 .finished {display: none}

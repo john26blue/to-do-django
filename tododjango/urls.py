@@ -27,6 +27,7 @@ urlpatterns = [
 
     url(r'^create/', Create.as_view(), name='create'),
     url(r'^delete/(?P<pk>[0-9]+)', Delete.as_view(), name='delete'),
+    url(r'^mdelete/', MDelete, name='mutiple delete'),
     url(r'^change/(?P<pk>[0-9]+)', Change.as_view(), name='change'),
     url(r'finish/(?P<pk>[0-9]+)', Finish, name='finish'),
 
