@@ -7,6 +7,7 @@ STATUS_CHOICES = (
     ('b', 'Started'),
     ('c', 'Finished'),
     )
+
 class Todo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=200)

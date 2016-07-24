@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.models import User
+from django.views.generic import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.forms import UserForm
 
 def Register(request):
     if request.method == 'GET':
@@ -40,3 +43,12 @@ def Login(request):
 def Logout(request):
     logout(request)
     return redirect(reverse('login'))
+
+class Profile(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserForm
+    template_name = 'user_form.html'
+    success_url = reverse_lazy('profile')
+    
+    def get_object(self):
+        return User.objects.get(pk=self.request.user.pk)
